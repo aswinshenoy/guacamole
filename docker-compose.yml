@@ -27,6 +27,7 @@ services:
       - POSTGRES_DB
       - POSTGRES_PASSWORD
       - POSTGRES_USER
+      - POSTGRES_HOST_AUTH_METHOD=password
     volumes:
       - ./initdb.sql:/docker-entrypoint-initdb.d/dump.sql
     ports:
@@ -62,7 +63,7 @@ services:
       networks:
         - guaca_network
       build:
-        context: nginx
+        context: .
         dockerfile: nginx/Dockerfile
       depends_on:
         - guacamole
